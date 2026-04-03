@@ -1,0 +1,13 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "GHDL: Run Testbench",
+            "type": "ghdl",
+            "request": "launch",
+            "preLaunchTask": "GHDL: Full flow (Analyze → Elaborate → Simulate)",
+            "stopOnEntry": false,
+            "console": "integratedTerminal"
+        }
+    ]
+}

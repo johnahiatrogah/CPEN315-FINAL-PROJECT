@@ -1,0 +1,102 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "GHDL: Analyze all VHDL files",
+            "type": "shell",
+            "command": "ghdl",
+            "args": [
+                "-a",
+                "${workspaceFolder}/32bit CPU VHDL/ALU.vhd",
+                "${workspaceFolder}/32bit CPU VHDL/ALU_Control.vhd",
+                "${workspaceFolder}/32bit CPU VHDL/Control_Unit.vhd",
+                "${workspaceFolder}/32bit CPU VHDL/Data_Memory.vhd",
+                "${workspaceFolder}/32bit CPU VHDL/Instruction_Memory.vhd",
+                "${workspaceFolder}/32bit CPU VHDL/Register_File.vhd",
+                "${workspaceFolder}/32bit CPU VHDL/MIPS32_CPU.vhd",
+                "${workspaceFolder}/32bit CPU VHDL/MIPS32_CPU_TB.vhd"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [],
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false
+            }
+        },
+        {
+            "label": "GHDL: Elaborate testbench",
+            "type": "shell",
+            "command": "ghdl",
+            "args": [
+                "-e",
+                "-fsynopsys",
+                "MIPS32_CPU_TB"
+            ],
+            "dependsOn": "GHDL: Analyze all VHDL files",
+            "problemMatcher": [],
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false
+            }
+        },
+        {
+            "label": "GHDL: Run simulation (VCD waveform)",
+            "type": "shell",
+            "command": "ghdl",
+            "args": [
+                "-r",
+                "MIPS32_CPU_TB",
+                "--vcd=${workspaceFolder}/waveforms/simulation.vcd"
+            ],
+            "dependsOn": "GHDL: Elaborate testbench",
+            "problemMatcher": [],
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false
+            }
+        },
+        {
+            "label": "GHDL: Clean (remove working directory)",
+            "type": "shell",
+            "command": "ghdl",
+            "args": [
+                "--remove",
+                "--work=work"
+            ],
+            "problemMatcher": [],
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false
+            }
+        },
+        {
+            "label": "GHDL: Full flow (Analyze → Elaborate → Simulate)",
+            "type": "shell",
+            "command": "ghdl",
+            "args": [
+                "-a",
+                "${workspaceFolder}/32bit CPU VHDL/ALU.vhd",
+                "${workspaceFolder}/32bit CPU VHDL/ALU_Control.vhd",
+                "${workspaceFolder}/32bit CPU VHDL/Control_Unit.vhd",
+                "${workspaceFolder}/32bit CPU VHDL/Data_Memory.vhd",
+                "${workspaceFolder}/32bit CPU VHDL/Instruction_Memory.vhd",
+                "${workspaceFolder}/32bit CPU VHDL/Register_File.vhd",
+                "${workspaceFolder}/32bit CPU VHDL/MIPS32_CPU.vhd",
+                "${workspaceFolder}/32bit CPU VHDL/MIPS32_CPU_TB.vhd"
+            ],
+            "problemMatcher": [],
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false
+            }
+        }
+    ]
+}
